@@ -42,7 +42,46 @@ class Factura:
     def cerrarFactura(self):
         
         return "Total a pagar es: " + str(self.totalFactura + self.totalImpuesto) + "Colones"
-    
+
+class reserva:
+     def __init__(self,cedula,identificador_cancha,fecha, hora_inicio,hora_fin, identificador_reserva):
+          self.cedula=cedula
+          self.identificador_cancha=identificador_cancha
+          self.fecha=fecha
+          self.hora_inicio=hora_inicio
+          self.hora_fin=hora_fin
+          self.identificador_reserva = identificador_reserva
+          
+     def mostrar(self):
+         return " Cedula: "+ self.cedula + " Identifacador: " + self.identificador_cancha + " Fecha: " + self.fecha +" HoraInicio: " + self.hora_inicio + " Horafinal: " + self.hora_fin + " Identifacador de reserva: " + self.identificador_reserva
+
+class disponible:
+     def __init__(self,identificador, HoraInicio ,Horafinal, reserva):
+          self.identificador = identificador
+          self.HoraIniio = HoraInicio
+          self.Horafinal= Horafinal
+          self.reserva= reserva
+     def mostrar(self):
+         return "Identificador: " + self.identificador + "Hora inicio: " + self.HoraInicio + " Hora final: " + self.Horafinal + " Codigo de reserva: " + self.reserva 
+         
+
+
+class cliente:
+     def __init__(self,cedula,nombre,telefono,correo):
+          self.cedula=cedula
+          self.nombre=nombre
+          self.telefono=telefono
+          self.correo=correo
+     def mostrar(self):
+         return "Nombre: " + self.nombre + " Cedula: " + self.cedula + " Telefono: " + self.telefono + " Correo: " + self.correo
+         
+
+class cancha:
+     def __init__(self,identificador,precio):
+          self.identificador = identificador
+          self.precio = precio
+     def mostar(self):
+         return " Identificador es : " + self.identificador + " Precio: " + self.precio    
 
 class canchas:
     contadorFactura = 0
@@ -88,7 +127,7 @@ class canchas:
                        print("EL cliente ha sido creado exitosamente")
                    else:
                        for valor in canchas.cliente:
-                           if valor.cedula==cedula:
+                           if (valor.cedula == cedula):
                                return "la cedula ya existe"
                        lista = cliente(cedula,nombre,telefono,correo)
                        print("EL cliente ha sido creado exitosamente")
@@ -101,19 +140,19 @@ class canchas:
 
     def modificar_cliente(self, cedula, nuevoTelefono, nuevoCorreo):
         contador=0
-        if cedula == "ALL":
+        if (cedula == "ALL"):
             for valor in canchas.clientes:
                 valor.mostrar()
         else: 
             if (isinstance(cedula,int) and isinstance(nuevoTelefono,int) and isinstance(nuevoCorreo,str)):
-                if cedula!= "" and cedula<1000000000 and cedula>9999999:
-                    if nuevoTelefono!="" and nuevoTelefono < 100000000 and nuevoTelefono > 9999999 and nuevoCorreo!= "":
+                if (cedula!= "" and cedula < 1000000000 and cedula > 9999999):
+                    if (nuevoTelefono!="" and nuevoTelefono < 100000000 and nuevoTelefono > 9999999 and nuevoCorreo!= ""):
                         for valor in canchas.clientes:
-                            if valor.cedula==cedula:
+                            if (valor.cedula == cedula):
                                 contador+=1
                                 valor.telefono = nuevoTelefono
                                 valor.correo = nuevoCorreo
-                        if contador==0:
+                        if (contador == 0 ):
                              return "Error: No se encotró la cedula"
                         else:
                             return "Sus datos han sidos modificados correctamente"
@@ -127,19 +166,20 @@ class canchas:
 
     def mostrarCliente(self,cedula):
           contador=0
-          if cedula!= "" and cedula<1000000000 and cedula>9999999:
-               if canchas.clientes == []:
+          if (cedula!= "" and cedula < 1000000000 and cedula > 9999999):
+               if (canchas.clientes == []):
                     return "Error: No cliente no encontado"
                else:
                     for valor in canchas.clientes:
-                         if valor.cedula==cedula:
-                              contador+=1
+                         if (valor.cedula == cedula):
+                              contador+= 1
                               contador.mostrar()
-                    if contador == 0:
+                    if (contador == 0):
                          return "Error: Cedula no encontrada"
                          
           else:
                return "Error: intentelo de nuevo"
+
 
 
         
