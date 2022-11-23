@@ -98,3 +98,48 @@ class canchas:
               return "Error: Parámetros no valdos intentelo de nuevo"
        else:
            return"Error: Parámetros no validos intenteo de nuevo"
+
+    def modificar_cliente(self, cedula, nuevoTelefono, nuevoCorreo):
+        contador=0
+        if cedula == "ALL":
+            for valor in canchas.clientes:
+                valor.mostrar()
+        else: 
+            if (isinstance(cedula,int) and isinstance(nuevoTelefono,int) and isinstance(nuevoCorreo,str)):
+                if cedula!= "" and cedula<1000000000 and cedula>9999999:
+                    if nuevoTelefono!="" and nuevoTelefono < 100000000 and nuevoTelefono > 9999999 and nuevoCorreo!= "":
+                        for valor in canchas.clientes:
+                            if valor.cedula==cedula:
+                                contador+=1
+                                valor.telefono = nuevoTelefono
+                                valor.correo = nuevoCorreo
+                        if contador==0:
+                             return "Error: No se encotró la cedula"
+                        else:
+                            return "Sus datos han sidos modificados correctamente"
+                                   
+                    else:
+                        return "Error: En parámetros intentelo de nuevo "
+                else:
+                    return "Error: En parámetros intentelo de nuevo"
+            else:
+                return "Error: En las entradas intentelo de nuevo"
+
+    def mostrarCliente(self,cedula):
+          contador=0
+          if cedula!= "" and cedula<1000000000 and cedula>9999999:
+               if canchas.clientes == []:
+                    return "Error: No cliente no encontado"
+               else:
+                    for valor in canchas.clientes:
+                         if valor.cedula==cedula:
+                              contador+=1
+                              contador.mostrar()
+                    if contador == 0:
+                         return "Error: Cedula no encontrada"
+                         
+          else:
+               return "Error: intentelo de nuevo"
+
+
+        
